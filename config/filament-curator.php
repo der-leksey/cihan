@@ -18,7 +18,6 @@ return [
     'rules' => [],
     'cloud_disks' => ['cloudinary', 's3'],
     'sizes' => [
-        // 'medium' => ['width' => 640, 'height' => null, 'quality' => 60],
-        // 'large' => ['width' => 1024, 'height' => null, 'quality' => 60],
+        //'half' => ['width' => 1296 / 2 - 32, 'height' => null, 'quality' => 95],
     ],
 ];

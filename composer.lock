@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "8106d5ce2930cd8aaa9c91ef4a56909c",
+    "content-hash": "d9659e38ef6cc3892f8ac0367022cf96",
     "packages": [
         {
             "name": "akaunting/laravel-money",
@@ -2205,6 +2205,74 @@
             "time": "2022-05-21T17:30:32+00:00"
         },
         {
+            "name": "lab404/laravel-impersonate",
+            "version": "1.7.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/404labfr/laravel-impersonate.git",
+                "reference": "7c1f9c5cefd40247993f52f4b7724fd8b580084f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/404labfr/laravel-impersonate/zipball/7c1f9c5cefd40247993f52f4b7724fd8b580084f",
+                "reference": "7c1f9c5cefd40247993f52f4b7724fd8b580084f",
+                "shasum": ""
+            },
+            "require": {
+                "laravel/framework": "^6.0 | ^7.0 | ^8.0 | ^9.0",
+                "php": "^7.2 | ^8.0"
+            },
+            "require-dev": {
+                "mockery/mockery": "^1.3.3",
+                "orchestra/database": "^4.0 | ^5.0 | ^6.0 | ^7.0",
+                "orchestra/testbench": "^4.0 | ^5.0 | ^6.0 | ^7.0",
+                "phpunit/phpunit": "^7.5 | ^8.0 | ^9.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Lab404\\Impersonate\\ImpersonateServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "files": [
+                    "src/helpers.php"
+                ],
+                "psr-4": {
+                    "Lab404\\Impersonate\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Marceau Casals",
+                    "email": "marceau@casals.fr"
+                }
+            ],
+            "description": "Laravel Impersonate is a plugin that allows to you to authenticate as your users.",
+            "keywords": [
+                "auth",
+                "impersonate",
+                "impersonation",
+                "laravel",
+                "laravel-package",
+                "laravel-plugin",
+                "package",
+                "plugin",
+                "user"
+            ],
+            "support": {
+                "issues": "https://github.com/404labfr/laravel-impersonate/issues",
+                "source": "https://github.com/404labfr/laravel-impersonate/tree/1.7.3"
+            },
+            "time": "2022-01-15T13:39:35+00:00"
+        },
+        {
             "name": "laravel/framework",
             "version": "v9.41.0",
             "source": {
@@ -2648,6 +2716,68 @@
                 "source": "https://github.com/laravel/tinker/tree/v2.7.3"
             },
             "time": "2022-11-09T15:11:38+00:00"
+        },
+        {
+            "name": "larswiegers/laravel-translations-checker",
+            "version": "v0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/LarsWiegers/laravel-translations-checker.git",
+                "reference": "00d26558613884b96d636e165da192f46751cff9"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/LarsWiegers/laravel-translations-checker/zipball/00d26558613884b96d636e165da192f46751cff9",
+                "reference": "00d26558613884b96d636e165da192f46751cff9",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "illuminate/support": "^8.0|^9.0",
+                "php": "^7.4|^8.0"
+            },
+            "require-dev": {
+                "orchestra/testbench": "^6.0",
+                "phpunit/phpunit": "^9.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Larswiegers\\LaravelTranslationsChecker\\LaravelTranslationsCheckerServiceProvider"
+                    ],
+                    "aliases": {
+                        "LaravelTranslationsChecker": "Larswiegers\\LaravelTranslationsChecker\\LaravelTranslationsCheckerFacade"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Larswiegers\\LaravelTranslationsChecker\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Lars Wiegers",
+                    "email": "larswiegers@live.nl",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Make sure your laravel translations are checked and are included in all languages.",
+            "homepage": "https://github.com/larswiegers/laravel-translations-checker",
+            "keywords": [
+                "laravel-translations-checker",
+                "larswiegers"
+            ],
+            "support": {
+                "issues": "https://github.com/LarsWiegers/laravel-translations-checker/issues",
+                "source": "https://github.com/LarsWiegers/laravel-translations-checker/tree/v0.2"
+            },
+            "time": "2022-03-14T19:16:49+00:00"
         },
         {
             "name": "league/commonmark",
@@ -3764,6 +3894,75 @@
             "time": "2022-07-30T15:51:26+00:00"
         },
         {
+            "name": "phpsa/filament-authentication",
+            "version": "v2.3.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/phpsa/filament-authentication.git",
+                "reference": "67cd185c43475e7348386699c37c7d1d7972ac25"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/phpsa/filament-authentication/zipball/67cd185c43475e7348386699c37c7d1d7972ac25",
+                "reference": "67cd185c43475e7348386699c37c7d1d7972ac25",
+                "shasum": ""
+            },
+            "require": {
+                "filament/filament": "^2.16",
+                "lab404/laravel-impersonate": "^1.7",
+                "php": "^8.0",
+                "spatie/laravel-package-tools": "^1.13",
+                "spatie/laravel-permission": "^5.5"
+            },
+            "require-dev": {
+                "laravel/pint": "^1.2"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Phpsa\\FilamentAuthentication\\FilamentAuthenticationProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Phpsa\\FilamentAuthentication\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Craig G Smith",
+                    "email": "vxdhost@gmail.com"
+                }
+            ],
+            "description": "User & Role (via Spatie Roles/Permissions) Manager Resource For Filament Admin",
+            "homepage": "https://cgs4k.nz",
+            "keywords": [
+                "cli",
+                "filament",
+                "laravel",
+                "resource",
+                "ui",
+                "user"
+            ],
+            "support": {
+                "issues": "https://github.com/phpsa/filament-authentication/issues",
+                "source": "https://github.com/phpsa/filament-authentication/tree/v2.3.0"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/phpsa",
+                    "type": "github"
+                }
+            ],
+            "time": "2022-11-23T21:25:40+00:00"
+        },
+        {
             "name": "psr/cache",
             "version": "3.0.0",
             "source": {
@@ -4626,85 +4825,6 @@
                 }
             ],
             "time": "2022-11-17T17:28:09+00:00"
-        },
-        {
-            "name": "ryangjchandler/filament-user-resource",
-            "version": "v0.2.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/ryangjchandler/filament-user-resource.git",
-                "reference": "4169e7346908a91531849a7bfe8b77d62d40f93a"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/ryangjchandler/filament-user-resource/zipball/4169e7346908a91531849a7bfe8b77d62d40f93a",
-                "reference": "4169e7346908a91531849a7bfe8b77d62d40f93a",
-                "shasum": ""
-            },
-            "require": {
-                "filament/filament": "^2.0",
-                "illuminate/contracts": "^9.0",
-                "php": "^8.0",
-                "spatie/laravel-package-tools": "^1.9.2"
-            },
-            "require-dev": {
-                "nunomaduro/collision": "^6.0",
-                "nunomaduro/larastan": "^2.0.1",
-                "orchestra/testbench": "^7.0",
-                "pestphp/pest": "^1.21",
-                "pestphp/pest-plugin-laravel": "^1.1",
-                "phpstan/extension-installer": "^1.1",
-                "phpstan/phpstan-deprecation-rules": "^1.0",
-                "phpstan/phpstan-phpunit": "^1.0",
-                "phpunit/phpunit": "^9.5",
-                "spatie/laravel-ray": "^1.26"
-            },
-            "type": "library",
-            "extra": {
-                "laravel": {
-                    "providers": [
-                        "RyanChandler\\FilamentUserResource\\FilamentUserResourceServiceProvider"
-                    ],
-                    "aliases": {
-                        "FilamentUserResource": "RyanChandler\\FilamentUserResource\\Facades\\FilamentUserResource"
-                    }
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "RyanChandler\\FilamentUserResource\\": "src",
-                    "RyanChandler\\FilamentUserResource\\Database\\Factories\\": "database/factories"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Ryan Chandler",
-                    "email": "support@ryangjchandler.co.uk",
-                    "role": "Developer"
-                }
-            ],
-            "description": "A simple resource for managing users in Filament.",
-            "homepage": "https://github.com/ryangjchandler/filament-user-resource",
-            "keywords": [
-                "filament-user-resource",
-                "laravel",
-                "ryangjchandler"
-            ],
-            "support": {
-                "issues": "https://github.com/ryangjchandler/filament-user-resource/issues",
-                "source": "https://github.com/ryangjchandler/filament-user-resource/tree/v0.2.0"
-            },
-            "funding": [
-                {
-                    "url": "https://github.com/ryangjchandler",
-                    "type": "github"
-                }
-            ],
-            "time": "2022-06-07T15:50:29+00:00"
         },
         {
             "name": "spatie/invade",

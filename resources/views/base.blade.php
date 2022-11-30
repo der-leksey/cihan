@@ -16,16 +16,17 @@
     <body class="flex flex-col min-h-screen">
         @include('parts.header')
 
+        @if(!empty($page->blocks))
+            @foreach($page->blocks as $item)
+                @include("blocks.contact_form", ['block' => $item['data']])
+            @endforeach
+        @endif
+
         @section('page')
-            <section class="py-24">
-                <div class="container">
-                    <h2 class="text-5xl font-light">КОНСУЛЬТАЦИОННЫЕ УСЛУГИ ПО МИГРАЦИИ CIHAN</h2>
-                    <livewire:form /> 
-                </div>
-            </section>
         @endsection
 
         @yield('page')
+        
 
         @include('parts.footer')
 

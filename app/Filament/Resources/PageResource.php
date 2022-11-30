@@ -32,6 +32,7 @@ use Filament\Tables\Columns\TextInputColumn;
 use Filament\Tables\Columns\SelectColumn;
 use Filament\Tables\Filters\Filter;
 use Filament\Tables\Filters\SelectFilter;
+use App\Services\Filament\PageBlocks;
 
 
 class PageResource extends Resource
@@ -50,52 +51,13 @@ class PageResource extends Resource
                         TextInput::make('title')->required(),
                         TextInput::make('description'),
                         RichEditor::make('content'),
-                        BuilderField::make('blocks')
-                            ->blocks([
-                                BuilderField\Block::make('heading')
-                                    ->schema([
-                                        TextInput::make('content')
-                                            ->label('Heading')
-                                            ->required(),
-                                        TextInput::make('abc')
-                                            ->label('222')
-                                            ->hidden(fn (Closure $get) => $get('level') == 'h1')
-                                            ->required(),
-                                        Select::make('level')
-                                            ->options([
-                                                'h1' => 'Heading 1',
-                                                'h2' => 'Heading 2',
-                                                'h3' => 'Heading 3',
-                                                'h4' => 'Heading 4',
-                                                'h5' => 'Heading 5',
-                                                'h6' => 'Heading 6',
-                                            ])
-                                            ->required()
-                                            ->reactive(),
-                                    ]),
-                                BuilderField\Block::make('paragraph')
-                                    ->schema([
-                                        MarkdownEditor::make('content')
-                                            ->label('Paragraph')
-                                            ->required(),
-                                    ]),
-                                BuilderField\Block::make('image')
-                                    ->schema([
-                                        FileUpload::make('url')
-                                            ->label('Image')
-                                            ->image()
-                                            ->required(),
-                                        TextInput::make('alt')
-                                            ->label('Alt text')
-                                            ->required(),
-                                    ]),
-                                ])
+                        PageBlocks::get(),
                     ])->columnSpan(2),
 
                     Card::make()->schema([
                         TextInput::make('slug')->required(),
                         TextInput::make('menutitle'),
-                        Toggle::make('published'),
+                        Toggle::make('is_published'),
                         FileUpload::make('image')->image(),
                         TextInput::make('parent_id')->numeric(),
                         TextInput::make('order')->numeric(),
