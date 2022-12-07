@@ -1,3 +1,28 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+.title {
+    @apply
+    text-5xl
+    text-slate-800
+    uppercase
+    font-bold
+    tracking-widest
+    leading-snug
+}
+
+.section + .section:not([class*="bg-"]) {
+    padding-top: 0;
+}
+
+.card {
+    @apply
+    flex-row
+    rounded-xl
+    shadow-lg
+    bg-white 
+    transition-all
+    hover:shadow-2xl
+}

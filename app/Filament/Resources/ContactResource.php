@@ -26,6 +26,7 @@ use Filament\Tables\Columns\SelectColumn;
 use Filament\Tables\Filters\Filter;
 use Filament\Tables\Filters\SelectFilter;
 
+
 class ContactResource extends Resource
 {
     protected static ?string $model = Contact::class;
@@ -43,7 +44,15 @@ class ContactResource extends Resource
                     
                     Repeater::make('social')
                         ->schema([
-                            TextInput::make('icon'),
+                            //IconPicker::make('icon'),
+                            Select::make('icon')
+                                ->options([
+                                    'instagram',
+                                    'telegram',
+                                    'whatsapp',
+                                    'viber',
+                                    'vk',
+                                ])->required(),
                             TextInput::make('link')->required(),
                         ])
                         ->columns(2),

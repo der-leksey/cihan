@@ -1,13 +1,22 @@
 /** @type {import('tailwindcss').Config} */
+
+const colors = require('tailwindcss/colors')
+
 module.exports = {
   content: [
     "./resources/**/*.blade.php",
     "./resources/**/*.js",
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        //primary: 'rgb(var(--color-primary) / <alpha-value>)',
+        'primary': 'hsl(356, 92%, 46%)',
+        //'primary-light': 'hsl(356, 92%, 85%)',
+      },
+    },
     fontFamily: {
-      sans: ['Roboto', 'sans-serif'],
+      sans: ['IBM Plex Sans', 'sans-serif'],
     },
     // container: {
     //   center: true,
@@ -25,6 +34,7 @@ module.exports = {
     container: false
   },
   plugins: [
+    require('@tailwindcss/typography'),
     function ({ addComponents }) {
       addComponents({
         '.container': {

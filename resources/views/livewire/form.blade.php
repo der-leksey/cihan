@@ -1,22 +1,53 @@
-<form action="">
-    <x-forms.input
+<form action="" wire:submit.prevent="submit">
+    <x-input
         type="tel"
         label="Phone"
         name="phone"
-        wire:model="input"
     />
-    {{ $input }}
 
+    <x-input
+        label="Email"
+        name="email"
+        type="email"
+    />
+
+    <x-input
+        label="Email"
+        name="email"
+        type="email"
+    />
+
+    <x-input
+        label="Email"
+        name="email"
+        type="email"
+    />
+
+    <x-input
+        label="Email"
+        name="email"
+        type="email"
+    />
 
     <button
-        @click($input = 1)
-        type="button"
+        type="submit"
         class="
             w-full px-5 py-4
-            text-white font-medium
-            rounded-lg
-            bg-blue-700
-            hover:bg-blue-800 
-            focus:ring-blue-300 focus:ring-4 focus:outline-none"
-    >Default</button>
+            rounded-xl
+            bg-primary
+            text-white font-bold
+            hover:bg-primary-800 
+            focus:ring-primary/40 focus:ring-4 focus:outline-none
+        "
+    >
+        Submit
+    </button>
+
+    {{-- {{ $errors }} --}}
+
+    @if (session()->has('message'))
+        <div class="bg-green-500">
+            {{ session('message') }}
+        </div>
+    @endif
 </form>

@@ -18,6 +18,7 @@ use Closure;
 use Filament\Forms\Components\Card;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\Toggle;
 use Filament\Forms\Components\Hidden;
@@ -33,7 +34,10 @@ use Filament\Tables\Columns\SelectColumn;
 use Filament\Tables\Filters\Filter;
 use Filament\Tables\Filters\SelectFilter;
 use App\Services\Filament\PageBlocks;
-
+//use Webbingbrasil\FilamentCopyActions\Tables\Actions\CopyAction;
+use Camya\Filament\Forms\Components\TitleWithSlugInput;
+use FilamentCurator\Forms\Components\MediaPicker;
+use FilamentTiptapEditor\TiptapEditor;
 
 class PageResource extends Resource
 {
@@ -48,18 +52,26 @@ class PageResource extends Resource
             Grid::make(3)
                 ->schema([
                     Card::make()->schema([
-                        TextInput::make('title')->required(),
-                        TextInput::make('description'),
-                        RichEditor::make('content'),
+                        //TextInput::make('title')->required(),
+                        TitleWithSlugInput::make(
+                            fieldTitle: 'title',
+                            fieldSlug: 'slug',
+                            urlPath: '/page/',
+                        ),
+                        Textarea::make('description')->rows(3),
+                        TiptapEditor::make('content'),
                         PageBlocks::get(),
                     ])->columnSpan(2),
 
                     Card::make()->schema([
-                        TextInput::make('slug')->required(),
+                        //TextInput::make('slug')->required(),
                         TextInput::make('menutitle'),
                         Toggle::make('is_published'),
-                        FileUpload::make('image')->image(),
-                        TextInput::make('parent_id')->numeric(),
+                        MediaPicker::make('image'),
+                        Select::make('parent_id')
+                            //->options(Page::where(fn(Closure $get) => 'id', '!-', 1)->pluck('title', 'id'))
+                            ->options(fn ($record) => Page::all()->pluck('title', 'id'))
+                            ->searchable(),
                         TextInput::make('order')->numeric(),
                     ])->columnSpan(1),
             ]),
@@ -77,7 +89,7 @@ class PageResource extends Resource
                 //     ->default(0)
                 //     ->options(Page::all()->pluck('title', 'id')),
                 TextColumn::make('parent_id')->sortable()->formatStateUsing(fn (Page $record)
-                    => !empty($record->parent) ? Page::findOrFail($record->parent_id)->title : ''
+                    => !empty($record->parent_id) ? Page::findOrFail($record->parent_id)->title . " ({$record->parent_id})" : ''
                 ),
                 TextInputColumn::make('order')->rules(['integer', 'filled'])->sortable(),
                 ImageColumn::make('image'),
@@ -94,6 +106,7 @@ class PageResource extends Resource
                     ->searchable()
             ])
             ->actions([
+                //CopyAction::make()->copyable(fn ($record) => $record->name),
                 Tables\Actions\EditAction::make(),
             ])
             ->bulkActions([
