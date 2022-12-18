@@ -2,6 +2,8 @@
 namespace App\Services\Filament;
 
 use App;
+use App\Models\BlockCollection;
+use App\Models\Page;
 use Filament\Forms;
 use Filament\Resources\Form;
 use Filament\Resources\Resource;
@@ -24,7 +26,6 @@ use FilamentTiptapEditor\TiptapEditor;
 
 class PageBlocks
 {
-
     private static function make($name, $fields = [])
     {
         return Builder\Block::make($name)
@@ -56,23 +57,28 @@ class PageBlocks
         ]);
     }
 
+    
     private static function cards()
     {
         return static::make('cards', [
-            TextInput::make('parent_id')->numeric()->required(),
+            Select::make('parent_id')
+                ->options(fn ($record) => Page::all()->pluck('title', 'id'))
+                ->searchable(),
         ]);
     }
 
     private static function items()
     {
         return static::make('items', [
-            Repeater::make('items')
-                ->schema([
-                    MediaPicker::make('image'),
-                    TextInput::make('title'),
-                    Textarea::make('text')->rows(3),
-                ])
+            Select::make('collection_id')
+            ->options(fn ($record) => BlockCollection::all()->pluck('name', 'id'))
+            ->searchable(),
         ]);
+    }
+
+    private static function map()
+    {
+        return static::make('map');
     }
 
     public static function get()
@@ -84,6 +90,7 @@ class PageBlocks
                     static::cards(),
                     static::items(),
                     static::contact_form(),
+                    static::map(),
                 ]
             )->collapsible();
     }

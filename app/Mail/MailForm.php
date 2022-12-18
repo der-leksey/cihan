@@ -13,14 +13,15 @@ class MailForm extends Mailable
 {
     use Queueable, SerializesModels;
 
+    public $maildata;
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($maildata)
     {
-        //
+        $this->maildata = $maildata;
     }
 
     /**
@@ -44,6 +45,9 @@ class MailForm extends Mailable
     {
         return new Content(
             markdown: 'emails.form',
+            with: [
+                'maildata' => $this->maildata,
+            ],
         );
     }
 

@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Http\Request;
+use App\Services\Settings;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -24,23 +25,25 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(Request $request)
     {   
-        $langs = ['en', 'ru', 'tr'];
+        $settings = Settings::getSystemSettings();
+
+        $langs = explode(',', $settings['locales'] ?? $settings['locale'] ?? 'en');
+
         $filament_langs = config('filament-language-switch.locales');
         foreach ($filament_langs as $key => $item) {
             if (!in_array($key, $langs)) {
                 unset($filament_langs[$key]);
             }
         }
-
+        
         config([
+            'translatable.fallback_locale' => $settings['locale'] ?? 'en',
+            'translatable.locales' => $langs,
             'filament.brand' => 'Filament',
             'filament-language-switch.locales' => $filament_langs,
         ]);
-
-        if (in_array($request->segment(1), $langs)) {
-            app()->setLocale($request->segment(1));
-        }
-
+        
+        // lang switch
         if (in_array($request->segment(1), $langs)) {
             app()->setLocale($request->segment(1));
         }

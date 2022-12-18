@@ -10,13 +10,12 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        //primary: 'rgb(var(--color-primary) / <alpha-value>)',
-        'primary': 'hsl(356, 92%, 46%)',
-        //'primary-light': 'hsl(356, 92%, 85%)',
+        primary: '#8309a9',
+        secondary: '#f82259',
       },
     },
     fontFamily: {
-      sans: ['IBM Plex Sans', 'sans-serif'],
+      sans: ['Roboto', 'sans-serif'],
     },
     // container: {
     //   center: true,

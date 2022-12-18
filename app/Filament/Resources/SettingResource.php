@@ -10,26 +10,42 @@ use Filament\Resources\Form;
 use Filament\Resources\Resource;
 use Filament\Resources\Table;
 use Filament\Tables;
-use Filament\Tables\Columns\TextColumn;
-use Filament\Forms\Components\TextInput;
-use Filament\Forms\Components\Card;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Filament\Forms\Components\Card;
+use Filament\Forms\Components\Select;
+use Filament\Forms\Components\Toggle;
+use Filament\Forms\Components\Grid;
+use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\Repeater;
+use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Columns\BooleanColumn;
+use Filament\Tables\Columns\TextInputColumn;
+use Filament\Tables\Columns\SelectColumn;
+use Filament\Tables\Filters\Filter;
+use Filament\Tables\Filters\SelectFilter;
+use Closure;
+use FilamentCurator\Forms\Components\MediaPicker;
 
 class SettingResource extends Resource
 {
     protected static ?string $model = Setting::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-collection';
+    protected static ?string $navigationIcon = 'heroicon-o-cog';
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
                 Card::make()->schema([
-                    TextInput::make('name')->required()->unique(),
-                    TextInput::make('section'),
-                    TextInput::make('value'),
+                    TextInput::make('name')->required(),
+                    //TextInput::make('section'),
+                    Select::make('type')->options([
+                        'text' => 'text',
+                        'image' => 'image',
+                    ])->reactive()->required(),
+                    TextInput::make('value')->hidden(fn (Closure $get) => $get('type') != 'text')->required(),
+                    MediaPicker::make('value')->hidden(fn (Closure $get) => $get('type') != 'image')->required(),
                 ])
             ]);
     }

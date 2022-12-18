@@ -3,27 +3,22 @@
 namespace App\Http\Livewire;
 
 use Livewire\Component;
-use App\Mail\MailForm;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
-
+use App\Mail\MailForm;
+use App\Services\Settings;
 
 class Form extends Component
 {
-    public $phone = '';
     public $email = '';
-    public $blured = [];
     
     protected $rules = [
         'phone' => 'required|min:11',
         'email' => 'required|email',
     ];
 
-    public function blur($propertyName)
-    {   
-        if (!in_array($propertyName, $this->blured)) {
-            $this->blured[] = $propertyName;
-        }
+    function __construct()
+    {
+        $this->phone = '';
     }
 
     public function updated($propertyName)
@@ -35,7 +30,12 @@ class Form extends Component
     {
         $this->validate();
 
-        Mail::to('ichbinjura@gmail.com')->send(new MailForm());
+        $maildata = [
+            'phone' => $this->phone,
+            'email' => $this->email,
+        ];
+
+        Mail::to('ichbinjura@gmail.com')->send(new MailForm($maildata));
 
         session()->flash('message', 'sucess');
 
@@ -45,6 +45,6 @@ class Form extends Component
 
     public function render()
     {
-        return view('livewire.form');
+        return view('livewire.form', ['settings' => Settings::getSettings()->toArray()]);
     }
 }

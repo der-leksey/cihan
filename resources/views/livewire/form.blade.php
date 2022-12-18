@@ -1,26 +1,13 @@
 <form action="" wire:submit.prevent="submit">
     <x-input
+        :label="$settings['ln.form.name'] ?? 'Name'"
+        name="name"
+    />
+
+    <x-input
         type="tel"
-        label="Phone"
+        :label="$settings['ln.form.phone'] ?? 'Phone'"
         name="phone"
-    />
-
-    <x-input
-        label="Email"
-        name="email"
-        type="email"
-    />
-
-    <x-input
-        label="Email"
-        name="email"
-        type="email"
-    />
-
-    <x-input
-        label="Email"
-        name="email"
-        type="email"
     />
 
     <x-input
@@ -35,18 +22,19 @@
             w-full px-5 py-4
             rounded-xl
             bg-primary
-            text-white font-bold
-            hover:bg-primary-800 
-            focus:ring-primary/40 focus:ring-4 focus:outline-none
+            text-white font-bold uppercase tracking-widest
+            bg-gradient-to-r from-primary to-secondary
+            focus:ring-primary/20 focus:ring-4 focus:outline-none
+            hover:bg-gradient-to-l
         "
     >
-        Submit
+        {{ $settings['ln.form.submit'] ?? 'Submit' }}
     </button>
 
     {{-- {{ $errors }} --}}
 
     @if (session()->has('message'))
-        <div class="bg-green-500">
+        <div class="bg-green-700">
             {{ session('message') }}
         </div>
     @endif

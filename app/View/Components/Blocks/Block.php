@@ -9,7 +9,6 @@ use App\Models\Page;
 class Block extends Component
 {
     public $block;
-    public $lang;
 
     /**
      * Create a new component instance.
@@ -21,7 +20,6 @@ class Block extends Component
         // $items = Page::where('parent_id', 3)->get();
 
         $this->block = $block;
-        $this->lang = App::getLocale();
     }
 
     /**

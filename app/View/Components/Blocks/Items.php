@@ -3,12 +3,12 @@
 namespace App\View\Components\Blocks;
 
 use Illuminate\View\Component;
-use App;
+use App\Models\BlockCollection;
 
 class Items extends Component
 {
     public $block;
-    public $lang;
+    public $items;
 
     /**
      * Create a new component instance.
@@ -17,9 +17,15 @@ class Items extends Component
      */
     public function __construct($block)
     {
+        $items = [];
+        
+        if (!empty($block['collection_id'])) {
+            $itemsObj = BlockCollection::where('id', $block['collection_id'])->first();
+            $items = !empty($itemsObj) ? $itemsObj->items : [];
+        }
+        
         $this->block = $block;
-        //$this->block['items'] = [1,2,3];
-        $this->lang = App::getLocale();
+        $this->items = $items;
     }
 
     /**

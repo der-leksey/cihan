@@ -9,6 +9,7 @@ use App\Models\Page;
 class Cards extends Component
 {
     public $block;
+    public $items;
     public $lang;
 
     /**
@@ -18,10 +19,14 @@ class Cards extends Component
      */
     public function __construct($block)
     {
-        $items = Page::where('parent_id', $block['parent_id'] ?? 0)->get();
-
+        $items = [];
+        
+        if (!empty($block['parent_id'])) {
+            $items = Page::where('parent_id', $block['parent_id'])->get();
+        }
+        
         $this->block = $block;
-        $this->block['items'] = $items;
+        $this->items = $items;
         $this->lang = App::getLocale();
     }
 

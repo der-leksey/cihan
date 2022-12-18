@@ -17,6 +17,7 @@ use Filament\Forms\Components\Card;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Toggle;
 use Filament\Forms\Components\Grid;
+use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Repeater;
 use Filament\Tables\Columns\TextColumn;
@@ -47,17 +48,17 @@ class ContactResource extends Resource
                             //IconPicker::make('icon'),
                             Select::make('icon')
                                 ->options([
-                                    'instagram',
-                                    'telegram',
-                                    'whatsapp',
-                                    'viber',
-                                    'vk',
+                                    'instagram' => 'instagram',
+                                    'telegram' => 'telegram',
+                                    'whatsapp' => 'whatsapp',
+                                    'viber' => 'viber',
+                                    'vk' => 'vk',
                                 ])->required(),
                             TextInput::make('link')->required(),
                         ])
                         ->columns(2),
 
-                    TextInput::make('map'),
+                        Textarea::make('map')->rows(3),
                 ])
             ]);
     }

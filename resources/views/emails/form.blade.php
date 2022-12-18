@@ -1,12 +1,8 @@
 <x-mail::message>
-# Introduction
+    # New order from the form
 
-The body of your message.
+    {{ $maildata['phone'] ?? '-' }}
+    {{ $maildata['email'] ?? '-' }}
 
-<x-mail::button :url="''">
-Button Text
-</x-mail::button>
-
-Thanks,<br>
-{{ config('app.name') }}
+    Thanks, {{ config('app.name') }}
 </x-mail::message>
